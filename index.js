@@ -18,6 +18,10 @@ async function runApp () {
   const response = await instance.post('/login/autenticar')
   axios.cookieCredentialsHeader = response.headers.get('set-cookie')
   
+  instance.get('posicao/').then(response => {
+    publisher.sendMessage(channel, JSON.stringify(response.data))
+  })
+
   //    *         *      *          *           *            *
   // SECONDS, MINUTES, HOURS, DAYS OF MOUNTH, MONTH and DAYS OF WEEK.
 
